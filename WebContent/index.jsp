@@ -27,7 +27,6 @@
 	boolean isValidUser = true;
 
 	if (userType == null || userName == null || password == null || !userType.equals("customer")) {
-
 		isValidUser = false;
 	}
 
@@ -36,37 +35,167 @@
 
 	String search = request.getParameter("search");
 	String type = request.getParameter("type");
+	String priceFilter = request.getParameter("priceFilter");
 	String message = "All Products";
+
 	if (search != null) {
 		products = prodDao.searchAllProducts(search);
 		message = "Showing Results for '" + search + "'";
 	} else if (type != null) {
 		products = prodDao.getAllProductsByType(type);
 		message = "Showing Results for '" + type + "'";
+	} else if (priceFilter != null) {
+		// Simple price filtering
+		products = prodDao.getAllProducts();
+		List<ProductBean> filteredProducts = new ArrayList<ProductBean>();
+
+		if (priceFilter.equals("0-10000")) {
+			for (ProductBean p : products) {
+		if (p.getProdPrice() <= 10000) {
+			filteredProducts.add(p);
+		}
+			}
+			message = "Products Under Rs 10,000";
+		} else if (priceFilter.equals("10000-30000")) {
+			for (ProductBean p : products) {
+		if (p.getProdPrice() > 10000 && p.getProdPrice() <= 30000) {
+			filteredProducts.add(p);
+		}
+			}
+			message = "Products Rs 10,000 - Rs 30,000";
+		} else if (priceFilter.equals("30000-50000")) {
+			for (ProductBean p : products) {
+		if (p.getProdPrice() > 30000 && p.getProdPrice() <= 50000) {
+			filteredProducts.add(p);
+		}
+			}
+			message = "Products Rs 30,000 - Rs 50,000";
+		} else if (priceFilter.equals("50000-100000")) {
+			for (ProductBean p : products) {
+		if (p.getProdPrice() > 50000 && p.getProdPrice() <= 100000) {
+			filteredProducts.add(p);
+		}
+			}
+			message = "Products Rs 50,000 - Rs 1,00,000";
+		} else if (priceFilter.equals("100000-200000")) {
+			for (ProductBean p : products) {
+		if (p.getProdPrice() > 100000 && p.getProdPrice() <= 200000) {
+			filteredProducts.add(p);
+		}
+			}
+			message = "Products Rs 1,00,000 - Rs 2,00,000";
+		}
+		products = filteredProducts;
 	} else {
 		products = prodDao.getAllProducts();
 	}
+
 	if (products.isEmpty()) {
-		message = "No items found for the search '" + (search != null ? search : type) + "'";
+		message = "No items found for the search '"
+		+ (search != null ? search : type != null ? type : "selected price range") + "'";
 		products = prodDao.getAllProducts();
 	}
 	%>
 
 	<jsp:include page="header.jsp" />
 
+	<!-- Compact Filter Bar - Like Amazon/Flipkart -->
+	<div class="container-fluid"
+		style="background-color: white; border-bottom: 1px solid #ddd; padding: 10px 0; margin-bottom: 15px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<!-- Filter Dropdown Button -->
+					<div class="btn-group" style="margin-right: 15px;">
+						<button type="button"
+							class="btn btn-default btn-sm dropdown-toggle"
+							data-toggle="dropdown"
+							style="border: 1px solid #33cc33; color: #33cc33;">
+							<i class="glyphicon glyphicon-filter"></i> Price
+							<%
+							if (priceFilter != null) {
+							%>
+							<span class="filter-badge">1</span>
+							<%
+							}
+							%>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu price-filter-menu">
+							<li class="dropdown-header">Select Price Range</li>
+							<li><a href="index.jsp">All Products</a></li>
+							<li class="divider"></li>
+							<li><a href="index.jsp?priceFilter=0-10000">Under Rs
+									10,000</a></li>
+							<li><a href="index.jsp?priceFilter=10000-30000">Rs
+									10,000 - Rs 30,000</a></li>
+							<li><a href="index.jsp?priceFilter=30000-50000">Rs
+									30,000 - Rs 50,000</a></li>
+							<li><a href="index.jsp?priceFilter=50000-100000">Rs
+									50,000 - Rs 1,00,000</a></li>
+							<li><a href="index.jsp?priceFilter=100000-200000">Rs
+									1,00,000 - Rs 2,00,000</a></li>
+						</ul>
+					</div>
+
+					<!-- Active Filter Display -->
+					<%
+					if (priceFilter != null) {
+					%>
+					<div class="active-filters"
+						style="display: inline-block; margin-right: 15px;">
+						<span class="active-filter-tag"> <%
+ String filterText = "";
+ if (priceFilter.equals("0-10000"))
+ 	filterText = "Under Rs 10,000";
+ else if (priceFilter.equals("10000-30000"))
+ 	filterText = "Rs 10,000 - Rs 30,000";
+ else if (priceFilter.equals("30000-50000"))
+ 	filterText = "Rs 30,000 - Rs 50,000";
+ else if (priceFilter.equals("50000-100000"))
+ 	filterText = "Rs 50,000 - Rs 1,00,000";
+ else if (priceFilter.equals("100000-200000"))
+ 	filterText = "Rs 1,00,000 - Rs 2,00,000";
+ %> <%=filterText%> <a href="index.jsp" class="remove-filter">×</a>
+						</span>
+					</div>
+					<%
+					}
+					%>
+
+					<!-- Results Count -->
+					<div class="results-count pull-right"
+						style="margin-right: 15px; padding: 6px 0; color: #666; font-size: 13px;">
+						<strong><%=products.size()%></strong> products found
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Product Display Message -->
 	<div class="text-center"
-		style="color: black; font-size: 14px; font-weight: bold;"><%=message%></div>
+		style="color: black; font-size: 16px; font-weight: bold; margin-bottom: 20px;">
+		<%=message%>
+	</div>
 	<div class="text-center" id="message"
 		style="color: black; font-size: 14px; font-weight: bold;"></div>
+
 	<!-- Start of Product Items List -->
 	<div class="container">
 		<div class="row text-center">
 
 			<%
 			for (ProductBean product : products) {
-				int cartQty = new CartServiceImpl().getCartItemCount(userName, product.getProdId());
+				// Get cart quantity - handle both logged-in and logged-out users
+				int cartQty = 0;
+				if (isValidUser && userName != null) {
+					cartQty = new CartServiceImpl().getCartItemCount(userName, product.getProdId());
+				}
 			%>
-			<div class="col-sm-4" style='height: 350px;'>
+			<div class="col-sm-4"
+				style='height: <%=(isValidUser) ? "450px" : "400px"%>;'>
+				<!-- Dynamic height based on user status -->
 				<div class="thumbnail">
 					<img src="./ShowImage?pid=<%=product.getProdId()%>" alt="Product"
 						style="height: 150px; max-width: 180px">
@@ -82,9 +211,26 @@
 						Rs
 						<%=product.getProdPrice()%>
 					</p>
+
+					<%
+					// Check if product is in wishlist (only for logged-in customers)
+					boolean isInWishlist = false;
+					if (isValidUser && userName != null) {
+						try {
+							WishlistServiceImpl wishlistService = new WishlistServiceImpl();
+							isInWishlist = wishlistService.isInWishlist(userName, product.getProdId());
+						} catch (Exception e) {
+							// If wishlist service is not available yet, default to false
+							isInWishlist = false;
+						}
+					}
+					%>
+
 					<form method="post">
 						<%
-						if (cartQty == 0) {
+						if (isValidUser && userName != null) {
+							// LOGGED-IN CUSTOMER - Show cart and wishlist options
+							if (cartQty == 0) {
 						%>
 						<button type="submit"
 							formaction="./AddtoCart?uid=<%=userName%>&pid=<%=product.getProdId()%>&pqty=1"
@@ -105,6 +251,42 @@
 						<%
 						}
 						%>
+						<br>
+						<br>
+						<!-- Wishlist Button (Only for logged-in customers) -->
+						<%
+						if (isInWishlist) {
+						%>
+						<button type="submit"
+							formaction="./WishlistSrv?action=remove&pid=<%=product.getProdId()%>"
+							class="btn btn-warning btn-sm">
+							<span class="glyphicon glyphicon-heart"></span> Remove from
+							Wishlist
+						</button>
+						<%
+						} else {
+						%>
+						<button type="submit"
+							formaction="./WishlistSrv?action=add&pid=<%=product.getProdId()%>"
+							class="btn btn-info btn-sm">
+							<span class="glyphicon glyphicon-heart-empty"></span> Add to
+							Wishlist
+						</button>
+						<%
+						}
+						} else {
+						// LOGGED-OUT USER - Show login prompts
+						%>
+						<a href="login.jsp" class="btn btn-success">Add to
+							Cart</a> &nbsp;&nbsp;&nbsp; <a href="login.jsp"
+							class="btn btn-primary">Buy Now</a> <br>
+						<br> <a href="login.jsp" class="btn btn-info btn-sm"> <span
+							class="glyphicon glyphicon-heart-empty"></span>
+							Add to Wishlist
+						</a>
+						<%
+						}
+						%>
 					</form>
 					<br />
 				</div>
@@ -116,8 +298,7 @@
 
 		</div>
 	</div>
-	<!-- ENd of Product Items List -->
-
+	<!-- End of Product Items List -->
 
 	<%@ include file="footer.html"%>
 

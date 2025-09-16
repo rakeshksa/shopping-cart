@@ -35,4 +35,10 @@ public interface ProductService {
 	public boolean sellNProduct(String prodId, int n);
 
 	public int getProductQuantity(String prodId);
+	
+	// Add this method to com.shashi.service.ProductService
+	public List<ProductBean> getProductsByPriceRange(double minPrice, double maxPrice);
+	public List<ProductBean> getProductsByMultiplePriceRanges(List<String> priceRanges);
+
+	
 }

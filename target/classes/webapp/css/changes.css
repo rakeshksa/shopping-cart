@@ -1,178 +1,526 @@
 body {
-	background-color: #E6F9E6;
+background-color: #E6F9E6;
 }
 /* Add a dark background color with a little bit see-through */
 .navbar {
-	margin-bottom: 0;
-	background-color: #2d2d30;
-	border: 0;
-	font-size: 14px !important;
-	letter-spacing: 4px;
-	opacity: 0.9;
+margin-bottom: 0;
+background-color: #2d2d30;
+border: 0;
+font-size: 14px !important;
+letter-spacing: 4px;
+opacity: 0.9;
 }
 
 /* Add a gray color to all navbar links */
 .navbar li a, .navbar .navbar-brand {
-	color: #d5d5d5 !important;
+color: #d5d5d5 !important;
 }
 
 /* On hover, the links will turn white */
 .navbar-nav li a:hover {
-	color: red !important;
+color: red !important;
 }
 
 /* The active link */
 .navbar-nav li.active a {
-	color: #fff !important;
-	background-color: #29292c !important;
+color: #fff !important;
+background-color: #29292c !important;
 }
 
 /* Remove border color from the collapsible button */
 .navbar-default .navbar-toggle {
-	border-color: transparent;
+border-color: transparent;
 }
 
 /* Dropdown */
 .open .dropdown-toggle {
-	color: #fff;
-	background-color: #555 !important;
+color: #fff;
+background-color: #555 !important;
 }
 
 /* Dropdown links */
 .dropdown-menu li a {
-	color: #000 !important;
+color: #000 !important;
 }
 
 /* On hover, the dropdown links will turn red */
 .dropdown-menu li a:hover {
-	background-color: white !important;
+background-color: white !important;
 }
 
 /* Add a dark gray background color to the modal header and center text */
 button {
-	background-color: black;
-	color: white;
-	font-weight: bold;
-	border: 1px solid black;
-	padding: 7px;
-	border-radius: 5px;
+background-color: black;
+color: white;
+font-weight: bold;
+border: 1px solid black;
+padding: 7px;
+border-radius: 5px;
 }
 
 button:hover {
-	background-color: green;
-	color: white;
-	border: 1px solid red;
-	padding: 7px;
-	font-weight: bold;
+background-color: green;
+color: white;
+border: 1px solid red;
+padding: 7px;
+font-weight: bold;
 }
 
 .bg-1 {
-	background: #2d2d30;
-	color: #bdbdbd;
+background: #2d2d30;
+color: #bdbdbd;
 }
 
 .bg-1 h3 {
-	color: #fff;
+color: #fff;
 }
 
 .bg-1 p {
-	font-style: italic;
+font-style: italic;
 }
 
 .products {
-	background-color: #E6F9E6 !important;
-	padding: 20px;
+background-color: #E6F9E6 !important;
+padding: 20px;
 }
 
 .jumbotron {
-	background-color: #33cc33; /*#f4511e; /* Orange */
-	color: #ffffff;
+background-color: #33cc33; /*#f4511e; /* Orange */
+color: #ffffff;
 }
 
 /*Handling the price tag*/
 .price {
-	color: red;
-	font-weight: bold;
-	font-size: 20px;
+color: red;
+font-weight: bold;
+font-size: 20px;
 }
 
 .productname {
-	color: green;
-	font-size: 15px;
-	font-family: fantasy;
+color: green;
+font-size: 15px;
+font-family: fantasy;
 }
 
 .productinfo {
-	color: black;
-	/* text-align: center; */
-	font-size: 12px;
+color: black;
+/* text-align: center; */
+font-size: 12px;
 }
 
 /* If the screen size is 601px or more, set the font-size of <div> to 80px */
 @media only screen and (min-width: 601px) {
-	.tab {
-		border-radius: 10px;
-		background-color: #FFE5CC;
-		font-weight: bold;
-		font-style: normal;
-		font-size: 20px;
-		margin-left: 20px;
-		margin-right: 20px;
-		padding-top: 20px;
-		padding-bottom: 15px;
-	}
+.tab {
+border-radius: 10px;
+background-color: #FFE5CC;
+font-weight: bold;
+font-style: normal;
+font-size: 20px;
+margin-left: 20px;
+margin-right: 20px;
+padding-top: 20px;
+padding-bottom: 15px;
+}
 }
 
 /* If the screen size is 600px or less, set the font-size of <div> to 30px */
 @media only screen and (max-width: 600px) {
-	.tab {
-		border-radius: 10px;
-		background-color: #FFE5CC;
-		font-weight: bold;
-		font-style: normal;
-		font-size: 20px;
-		margin-left: 2%;
-		margin-right: 2%;
-		padding-top: 8px;
-		padding-bottom: 8px;
-	}
+.tab {
+border-radius: 10px;
+background-color: #FFE5CC;
+font-weight: bold;
+font-style: normal;
+font-size: 20px;
+margin-left: 2%;
+margin-right: 2%;
+padding-top: 8px;
+padding-bottom: 8px;
+}
 }
 
 /* Shopping Cart notification Batch */
 *.icon-blue {
-	color: #0088cc;
+color: #0088cc;
 }
 
 *.icon-grey {
-	color: grey;
+color: grey;
 }
 
 i {
-	width: 70px;
-	height: 50px;
-	text-align: center;
-	vertical-align: middle;
-	position: relative;
+width: 70px;
+height: 50px;
+text-align: center;
+vertical-align: middle;
+position: relative;
 }
 
 .badge:after {
-	content: attr(data-count);
-	position: absolute;
-	background: #ff6600;
-	height: 2rem;
-	top: 0.15rem;
-	right: 0.15rem;
-	width: 2rem;
-	text-align: center;
-	line-height: 2rem;
-	font-size: 1rem;
-	border-radius: 50%;
-	color: white;
-	border: 1px solid #ff6600;
-	font-family: sans-serif;
-	font-weight: bold;
+content: attr(data-count);
+position: absolute;
+background: #ff6600;
+height: 2rem;
+top: 0.15rem;
+right: 0.15rem;
+width: 2rem;
+text-align: center;
+line-height: 2rem;
+font-size: 1rem;
+border-radius: 50%;
+color: white;
+border: 1px solid #ff6600;
+font-family: sans-serif;
+font-weight: bold;
 }
 
 i.fa::before {
-	font-size: 3rem !important;
+font-size: 3rem !important;
+}
+
+/* Filter Sidebar Styles */
+.filter-section {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.filter-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #2d2d30;
+    user-select: none;
+}
+
+.filter-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 3px;
+    border: 2px solid #ddd;
+}
+
+.filter-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.filter-checkbox input:checked ~ .checkmark {
+    background-color: #33cc33;
+    border-color: #33cc33;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.filter-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.filter-checkbox .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-group {
+    margin-top: 10px;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .filter-section {
+        margin-bottom: 20px;
+    }
+    
+    .filter-checkbox {
+        margin-bottom: 10px;
+    }
+}
+
+/* Filter button hover effects */
+.btn-info:hover {
+    background-color: #33cc33;
+    border-color: #33cc33;
+}
+
+/* Product count badge */
+.product-count {
+    background-color: #33cc33;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+/* Price Filter Sidebar Styles */
+.list-group-item {
+    border: 1px solid #ddd;
+    margin-bottom: 2px;
+    border-radius: 4px !important;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #E6F9E6;
+    border-color: #33cc33;
+    text-decoration: none;
+}
+
+.list-group-item.active {
+    background-color: #33cc33;
+    border-color: #33cc33;
+    color: white;
+}
+
+.list-group-item.active:hover {
+    background-color: #28a428;
+    border-color: #28a428;
+}
+
+.list-group-item i {
+    margin-right: 8px;
+    color: #666;
+}
+
+.list-group-item.active i {
+    color: white;
+}
+
+/* Compact Filter Bar Styles - Amazon/Flipkart Style */
+.price-filter-menu {
+    min-width: 220px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+
+.price-filter-menu li a {
+    padding: 8px 20px;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.price-filter-menu li a:hover {
+    background-color: #E6F9E6;
+    color: #33cc33;
+}
+
+.price-filter-menu .dropdown-header {
+    font-weight: bold;
+    color: #33cc33;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* Filter Badge */
+.filter-badge {
+    background-color: #33cc33;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 11px;
+    margin-left: 5px;
+    display: inline-block;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* Active Filter Tags */
+.active-filters {
+    vertical-align: middle;
+}
+
+.active-filter-tag {
+    background-color: #33cc33;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.remove-filter {
+    color: white;
+    margin-left: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.remove-filter:hover {
+    opacity: 1;
+    color: white;
+    text-decoration: none;
+}
+
+/* Results Count */
+.results-count {
+    vertical-align: middle;
+    line-height: 34px;
+}
+
+/* Filter Button Hover Effect */
+.btn-group .btn:hover {
+    border-color: #33cc33 !important;
+    color: #33cc33 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .btn-group {
+        margin-bottom: 10px;
+    }
+    
+    .pull-right {
+        float: none !important;
+        display: inline-block;
+    }
+    
+    .results-count {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        margin-right: 0 !important;
+    }
+    
+    .list-group-item {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+/* Dropdown Animation */
+.dropdown-menu {
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Additional Filter Enhancements */
+.filter-bar {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.filter-button-group {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.dropdown-toggle {
+    border: 1px solid #33cc33 !important;
+    color: #33cc33 !important;
+}
+
+.dropdown-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(51, 204, 51, 0.3);
+}
+
+/* Price Range Specific Styles */
+.price-range-filter {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.price-range-title {
+    color: #2d2d30;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #33cc33;
+    padding-bottom: 8px;
+}
+
+/* Custom Button Overrides for Filter */
+.btn-filter {
+    background-color: white;
+    border: 1px solid #33cc33;
+    color: #33cc33;
+    transition: all 0.3s ease;
+}
+
+.btn-filter:hover {
+    background-color: #33cc33;
+    color: white;
+    border-color: #33cc33;
+}
+
+.btn-filter.active {
+    background-color: #33cc33;
+    color: white;
+    border-color: #33cc33;
+}
+
+
+/* Wishlist Styles */
+.wishlist-btn:hover {
+    background-color: #e91e63 !important;
+    color: white !important;
+    border-color: #e91e63 !important;
+}
+
+.wishlist-item {
+    transition: transform 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.wishlist-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.wishlist-item .caption {
+    padding: 15px;
+}
+
+.wishlist-item .btn-group-vertical {
+    margin-top: 15px;
+}
+
+.wishlist-item .btn-group-vertical .btn {
+    margin-bottom: 8px;
 }

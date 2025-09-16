@@ -153,9 +153,42 @@
 	COLLATE = utf8mb4_0900_ai_ci;
 	
 	
+	-- -----------------------------------------------------
+-- Table `shopping-cart`.`wishlist`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `shopping-cart`.`wishlist` ;
+
+CREATE TABLE IF NOT EXISTS `shopping-cart`.`wishlist` (
+  `email` VARCHAR(60) NOT NULL,
+  `prodid` VARCHAR(45) NOT NULL,
+  `added_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`email`, `prodid`),
+  INDEX `wishlist_email_idx` (`email` ASC) VISIBLE,
+  INDEX `wishlist_prodid_idx` (`prodid` ASC) VISIBLE,
+  CONSTRAINT `wishlist_email`
+    FOREIGN KEY (`email`)
+    REFERENCES `shopping-cart`.`user` (`email`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `wishlist_prodid`
+    FOREIGN KEY (`prodid`)
+    REFERENCES `shopping-cart`.`product` (`pid`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+	
+	
 	SET SQL_MODE=@OLD_SQL_MODE;
 	SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 	SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+	
+	
 	
 	-- -----------------------------------------------------
 	-- Data for table `shopping-cart`.`product`

@@ -533,5 +533,105 @@ public class ProductServiceImpl implements ProductService {
 
 		return quantity;
 	}
+	
+	
+	// Add these methods to com.shashi.service.impl.ProductServiceImpl
+
+	@Override
+	public List<ProductBean> getProductsByPriceRange(double minPrice, double maxPrice) {
+	    List<ProductBean> products = new ArrayList<>();
+	    Connection con = DBUtil.provideConnection();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    
+	    try {
+	        ps = con.prepareStatement("SELECT * FROM product WHERE pprice >= ? AND pprice <= ? ORDER BY pprice ASC");
+	        ps.setDouble(1, minPrice);
+	        ps.setDouble(2, maxPrice);
+	        rs = ps.executeQuery();
+	        
+	        while (rs.next()) {
+	            ProductBean product = new ProductBean();
+	            product.setProdId(rs.getString(1));
+	            product.setProdName(rs.getString(2));
+	            product.setProdType(rs.getString(3));
+	            product.setProdInfo(rs.getString(4));
+	            product.setProdPrice(rs.getDouble(5));
+	            product.setProdQuantity(rs.getInt(6));
+	            product.setProdImage(rs.getAsciiStream(7));
+	            products.add(product);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    DBUtil.closeConnection(con);
+	    DBUtil.closeConnection(ps);
+	    DBUtil.closeConnection(rs);
+	    return products;
+	}
+
+	@Override
+	public List<ProductBean> getProductsByMultiplePriceRanges(List<String> priceRanges) {
+	    List<ProductBean> products = new ArrayList<>();
+	    Connection con = DBUtil.provideConnection();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    
+	    if (priceRanges == null || priceRanges.isEmpty()) {
+	        return getAllProducts(); // Return all products if no filter selected
+	    }
+	    
+	    StringBuilder query = new StringBuilder("SELECT * FROM product WHERE ");
+	    List<String> conditions = new ArrayList<>();
+	    
+	    for (String range : priceRanges) {
+	        switch (range) {
+	            case "0-10000":
+	                conditions.add("(pprice >= 0 AND pprice <= 10000)");
+	                break;
+	            case "10000-30000":
+	                conditions.add("(pprice > 10000 AND pprice <= 30000)");
+	                break;
+	            case "30000-50000":
+	                conditions.add("(pprice > 30000 AND pprice <= 50000)");
+	                break;
+	            case "50000-100000":
+	                conditions.add("(pprice > 50000 AND pprice <= 100000)");
+	                break;
+	            case "100000-200000":
+	                conditions.add("(pprice > 100000 AND pprice <= 200000)");
+	                break;
+	        }
+	    }
+	    
+	    query.append(String.join(" OR ", conditions));
+	    query.append(" ORDER BY pprice ASC");
+	    
+	    try {
+	        ps = con.prepareStatement(query.toString());
+	        rs = ps.executeQuery();
+	        
+	        while (rs.next()) {
+	            ProductBean product = new ProductBean();
+	            product.setProdId(rs.getString(1));
+	            product.setProdName(rs.getString(2));
+	            product.setProdType(rs.getString(3));
+	            product.setProdInfo(rs.getString(4));
+	            product.setProdPrice(rs.getDouble(5));
+	            product.setProdQuantity(rs.getInt(6));
+	            product.setProdImage(rs.getAsciiStream(7));
+	            products.add(product);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    DBUtil.closeConnection(con);
+	    DBUtil.closeConnection(ps);
+	    DBUtil.closeConnection(rs);
+	    return products;
+	}
+
 
 }

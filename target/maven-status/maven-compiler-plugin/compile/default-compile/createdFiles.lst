@@ -2,9 +2,11 @@ com\shashi\service\impl\UserServiceImpl.class
 com\shashi\beans\CartBean.class
 com\shashi\service\TransService.class
 com\shashi\utility\JavaMailUtil$1.class
+com\shashi\beans\WishlistBean.class
 com\shashi\service\ProductService.class
 com\shashi\srv\AddtoCart.class
 com\shashi\service\impl\OrderServiceImpl.class
+com\shashi\srv\WishlistSrv.class
 com\shashi\service\impl\DemandServiceImpl.class
 com\shashi\srv\UpdateToCart.class
 com\shashi\starter\EmbeddedTomcatStarter.class
@@ -20,6 +22,8 @@ com\shashi\srv\FansMessage.class
 com\shashi\utility\IDUtil.class
 com\shashi\srv\AddProductSrv.class
 com\shashi\srv\LogoutSrv.class
+com\shashi\srv\FilterProductsSrv.class
+com\shashi\service\WishlistService.class
 com\shashi\srv\OrderServlet.class
 com\shashi\srv\UpdateProductSrv.class
 com\shashi\beans\OrderBean.class
@@ -35,6 +39,7 @@ com\shashi\utility\JavaMailUtil.class
 com\shashi\srv\RemoveProductSrv.class
 com\shashi\service\UserService.class
 com\shashi\utility\JavaMailUtil$2.class
+com\shashi\service\impl\WishlistServiceImpl.class
 com\shashi\utility\MailMessage.class
 com\shashi\beans\OrderDetails.class
 com\shashi\beans\DemandBean.class
