@@ -17,7 +17,7 @@ public class OrderDetails implements Serializable {
 	private String amount;
 	private int shipped;
 	private Timestamp time;
-	private InputStream prodImage;
+	private transient InputStream  prodImage;
 
 	public String getOrderId() {
 		return orderId;
